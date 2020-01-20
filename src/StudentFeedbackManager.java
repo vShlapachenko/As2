@@ -15,4 +15,11 @@ public class StudentFeedbackManager implements Iterable<StudentFeedback>{
     public Iterator<StudentFeedback> iterator() {
         return students.iterator();
     }
+
+    @Override
+    public String toString() {
+        return "StudentFeedbackManager{" +
+                "students=" + students +
+                '}';
+    }
 }

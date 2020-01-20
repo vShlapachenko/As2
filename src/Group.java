@@ -9,22 +9,20 @@ import java.io.FileReader;
 
 public class Group {
 
-    private String comment;
+    private String privateComment;
     private StudentFeedbackManager manager;
 
     public Group(StudentFeedbackManager manager) {
         this.manager = manager;
     }
 
-    public void convertFeedback(File input){
+    public void convertJsonToClass(File input){
         try {
             JsonElement fileElement = JsonParser.parseReader(new FileReader(input));
             JsonObject fileObject = fileElement.getAsJsonObject();
 
             //Extracting the basic fields
-
-            comment = fileObject.get("confidential_comments").getAsString();
-            System.out.println("Confid comment: " + comment);
+            privateComment = fileObject.get("confidential_comments").getAsString();
 
             //process all students
             JsonArray jsonArrayOfStudents = fileObject.get("group").getAsJsonArray();
@@ -47,4 +45,15 @@ public class Group {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Group{" +
+                "privateComment='" + privateComment + '\'' +
+                ", manager=" + manager +
+                '}';
+    }
+
+    public StudentFeedbackManager getManager() {
+        return manager;
+    }
 }
